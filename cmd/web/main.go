@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"flag"
 	
 	"log"
@@ -19,8 +20,11 @@ func main() {
 
 	fileServer:=http.FileServer(http.Dir("./ui/static/"))
 
+	infoLog:=log.New(os.Stdout,"INFO/t",log.Ldate|log.Ltime)
+	errorLog:=log.New(os.Stderr,"ERROR/t",log.Ldate|log.Ltime|log.Lshortfile)
+
 	mux.Handle("/static/",http.StripPrefix("/static",fileServer))
-	log.Printf("Starting server on %s",*addr)
+	infoLog.Printf("Starting server on %s",*addr)
 	err := http.ListenAndServe(":8000", mux)
-	log.Fatal(err)
+	errorLog.Fatal(err)
 }
