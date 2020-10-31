@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"log"
+	"html/template"
 	"strconv"
 )
 
@@ -11,7 +13,19 @@ func home(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	w.Write([]byte("Hello from snippetbox"))
+	ts,err:=template.ParseFiles("./ui/html/home.page.tmpl")
+	if err !=nil{
+		log.Println(err.Error())
+		http.Error(w,"internal server error ",500)
+		return
+	}
+	err =ts.Execute(w,nil)
+	if err!=nil{
+		log.Println(err.Error())
+		http.Error(w,"internal server error ",500)
+		return
+	}
+	
 }
 
 func showSnippet(w http.ResponseWriter, r *http.Request) {
