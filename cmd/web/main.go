@@ -24,7 +24,13 @@ func main() {
 	errorLog:=log.New(os.Stderr,"ERROR/t",log.Ldate|log.Ltime|log.Lshortfile)
 
 	mux.Handle("/static/",http.StripPrefix("/static",fileServer))
+
+	srv :=&http.Server{
+		Addr: *addr,
+		ErrorLog:errorLog,
+		Handler:mux,
+	}
 	infoLog.Printf("Starting server on %s",*addr)
-	err := http.ListenAndServe(":8000", mux)
+	err := srv.ListenAndServe()
 	errorLog.Fatal(err)
 }
