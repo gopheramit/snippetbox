@@ -5,14 +5,14 @@
 {{if .Snippets}}
 <table>
 <tr>
-<th>Title</th>
+<th>TITLE</th>
 <th>Created</th>
 <th>ID</th>
 </tr>
 {{range .Snippets}}
 <tr>
-<td><a href='/snippet?id={{.ID}}'>{{.TITLE}}</a></td>
-<!-- Use the new template function here -->
+<!-- Use the new semantic URL style-->
+<td><a href='/snippet/{{.ID}}'>{{.TITLE}}</a></td>
 <td>{{humanDate .Created}}</td>
 <td>#{{.ID}}</td>
 </tr>
