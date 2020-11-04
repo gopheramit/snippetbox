@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/gopheramit/snippetbox/pkg/models"
-
 	"html/template"
+	"net/url"
 	"path/filepath"
 	"time"
+
+	"github.com/gopheramit/snippetbox/pkg/models"
 )
 
 func humanDate(t time.Time) string {
@@ -18,6 +19,8 @@ var functions = template.FuncMap{
 
 type templateData struct {
 	CurrentYear int
+	FormData    url.Values
+	FormErrors  map[string]string
 	Snippet     *models.Snippet
 	Snippets    []*models.Snippet
 }
