@@ -20,6 +20,7 @@ var functions = template.FuncMap{
 type templateData struct {
 	CurrentYear int
 	Form        *forms.Form
+	Flash       string
 	Snippet     *models.Snippet
 	Snippets    []*models.Snippet
 }
