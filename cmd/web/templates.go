@@ -9,21 +9,22 @@ import (
 	"github.com/gopheramit/snippetbox/pkg/models"
 )
 
-func humanDate(t time.Time) string {
-	return t.Format("02 Jan 2006 at 15:04")
-}
-
-var functions = template.FuncMap{
-	"humanDate": humanDate,
-}
-
 type templateData struct {
+	CSRFToken       string
 	CurrentYear     int
 	Form            *forms.Form
 	Flash           string
 	Snippet         *models.Snippet
 	Snippets        []*models.Snippet
 	IsAuthenticated bool
+}
+
+func humanDate(t time.Time) string {
+	return t.Format("02 Jan 2006 at 15:04")
+}
+
+var functions = template.FuncMap{
+	"humanDate": humanDate,
 }
 
 func newTemplateCache(dir string) (map[string]*template.Template, error) {
