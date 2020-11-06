@@ -10,6 +10,27 @@ import (
 	"github.com/gopheramit/snippetbox/pkg/models"
 )
 
+func (app *application) signupUserForm(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Display the user signup form...")
+}
+
+func (app *application) signupUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Create a user group")
+}
+
+func (app *application) loginUserForm(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "display user login form")
+}
+
+func (app *application) loginUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Authenticateand login user")
+
+}
+
+func (app *application) logoutUser(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "logout the user")
+}
+
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	/*if r.URL.Path != "/" {
 		app.notFound(w)
